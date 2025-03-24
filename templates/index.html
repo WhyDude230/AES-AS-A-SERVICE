@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.5/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="/static/css/css.css"> -->
+</head>
+
+<body>
+    <div class="navbar bg-base-100">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-center">
+            <a class="btn btn-ghost text-xl">AES Encrypt/Decrypt</a>
+        </div>
+        <div class="navbar-end">
+            <button class="btn btn-ghost btn-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <button class="btn btn-ghost btn-circle">
+                <div class="indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span class="badge badge-xs badge-primary indicator-item"></span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <form action="/encrypt" method="POST" enctype="multipart/form-data">
+        <h1 style="text-align: center;">Plaintext</h1>
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">
+
+                </span>
+                <span class="label-text-alt"></span>
+            </div>
+            <textarea class="textarea textarea-bordered h-24" id="plaintext" name="plaintext"
+                placeholder="Enter text you want to encrypt">{% if plaintext %}{{plaintext}}{% endif %}</textarea>
+            <div class="label">
+                <span class="label-text-alt"></span>
+                <span class="label-text-alt"></span>
+            </div>
+        </label>
+
+        <label for="input">Key</label>
+        <input type="text" class="input input-sm input-bordered input-primary w-full max-w-xs" id="key" name="key"
+            placeholder="Enter key">
+        <label for="input">IV</label>
+        <input type="text" class="input input-sm input-bordered input-primary w-full max-w-xs" id="iv" name="iv"
+            placeholder="Enter IV">
+
+        <label for="input">Select Modes</label>
+        <select name="modes" id="modes" class="select select-sm select-primary w-full max-w-xs">
+            <option value="CBC">CBC</option>
+            <option value="ECB">ECB</option>
+            <option value="CTR">CTR</option>
+        </select>
+
+        <input style="text-align: center;" type="file" id="image" name="image"
+            class="file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs" />
+        <br></br>
+        <button class="btn w-64btn rounded-full" type="submit">Encrypt</button>
+    </form>
+
+    <br></br>
+
+    <form action="/decrypt" method="POST">
+
+        <h1 style="text-align: center;">Encrypted Text</h1>
+        <label class="form-control">
+            <div class="label">
+
+            </div>
+            <textarea class="textarea textarea-bordered h-24" placeholder="Enter ciphertext" id="ciphertext"
+                name="ciphertext">{% if ciphertext %}{{ciphertext}}{% endif %}</textarea>
+            <div class="label">
+
+            </div>
+        </label>
+
+
+        <label for="input">Key</label>
+        <input type="text" id="key" name="key" class="input input-sm input-bordered input-primary w-full max-w-xs"
+            placeholder="Enter key">
+        <label for="input">IV</label>
+        <input type="text" id="iv" name="iv" class="input input-sm input-bordered input-primary w-full max-w-xs"
+            placeholder="Enter IV">
+
+        <label for="input">Select Modes</label>
+        <select name="modes" id="modes" class="select select-sm select-primary w-full max-w-xs">
+            <option value="CBC">CBC</option>
+            <option value="ECB">ECB</option>
+            <option value="CTR">CTR</option>
+        </select>
+        <br></br>
+        <button class="btn w-64btn rounded-full" type="submit">Decrypt</button>
+    </form>
+
+
+
+
+
+</body>
+<!-- <script src="/static/js/js.js"></script> -->
+
+</html>
