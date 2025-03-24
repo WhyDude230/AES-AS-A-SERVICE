@@ -5,6 +5,7 @@ To run it simply execute the following
 ```bash
 python app.py
 ```
+then visit `http://127.0.0.1:8080/`
 
 ![image](https://github.com/user-attachments/assets/5a10948b-ee35-46bd-bc1f-6a304f1afe65)
 
